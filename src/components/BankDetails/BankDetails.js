@@ -83,12 +83,12 @@ const BankDetails = (props) => {
                                 </>
                             ) : null
                         }
-                        <p className="">{props.currency} {parseFloat(grant_tot / 10).toFixed(2)} </p>
+                        <p>{parseFloat(cgst_tot)+parseFloat(props.total)+parseFloat(sgst_tot)+parseFloat(igst_tot)}</p>
                     </div>
                 </div>
                 <input type="text" className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 text-md font-semibold mb-2" value="Bank Details" onChange={(e) => handleChange(e)} />
                 <div className="grid grid-cols-12 text-sm mb-10">
-                    <div className="col-span-5 ">
+                    <div className="col-span-3 ">
                         <input type="text" value={value.l_acc_name} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
                         <input type="text" value={value.l_bank_name} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
                         <input type="text" value={value.l_acc_no} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
