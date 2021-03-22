@@ -94,11 +94,11 @@ const BankDetails = (props) => {
                         <input type="text" value={value.l_acc_no} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
                         <input type="text" value={value.l_ifsc} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
                     </div>
-                    <div className="col-span-5 text-center w-full">
-                        <input type="text" value={value.name} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
-                        <input type="text" value={value.bank} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
-                        <input type="text" value={value.acc_no} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
-                        <input type="text" value={value.ifsc} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
+                    <div className="col-span-3  w-full">
+                        <input type="text" value={value.name} className=" w-full focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
+                        <input type="text" value={value.bank} className="w-full focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
+                        <input type="text" value={value.acc_no} className="w-full focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
+                        <input type="text" value={value.ifsc} className="w-full focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
                     </div>
                 </div>
             </div>
