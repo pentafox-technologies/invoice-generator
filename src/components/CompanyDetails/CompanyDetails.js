@@ -32,12 +32,12 @@ const CompanyDetails = () => {
           <input type="text" value={value.t_due} className="col-span-2 mr-2 font-semibold text-right focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
         </div>
         <div className="grid grid-cols-12">
-          <div className="col-span-5 mr-2">
-            <input type="text" value={value.cmpny_name} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 " onChange={(e) => handleChange(e)} />
-            <input type="text" value={value.gst} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 " onChange={(e) => handleChange(e)} />
-            <input type="text" value={value.pan} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 " onChange={(e) => handleChange(e)} />
-            <input type="text" value={value.state} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
-            <input type="text" value={value.address} className="focus:outline-none leading-none hover:bg-yellow-100 focus:bg-yellow-100 " onChange={(e) => handleChange(e)} />
+          <div className="col-span-5 mr-2 w-full">
+            <input type="text" value={value.cmpny_name} className=" w-full focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 " onChange={(e) => handleChange(e)} />
+            <input type="text" value={value.gst} className="w-full focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 " onChange={(e) => handleChange(e)} />
+            <input type="text" value={value.pan} className=" w-full focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 " onChange={(e) => handleChange(e)} />
+            <input type="text" value={value.state} className="w-full focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
+            <input type="text" value={value.address} className=" w-full focus:outline-none leading-none hover:bg-yellow-100 focus:bg-yellow-100 " onChange={(e) => handleChange(e)} />
           </div>
           <input type="text" value={value.inv_no} className="col-span-3 mr-2 text-right focus:outline-none max-h-12 hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
           <input type="" value={value.issue_date} className="col-span-2 mr-2 text-right focus:outline-none max-h-12 hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
