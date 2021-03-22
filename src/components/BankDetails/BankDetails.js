@@ -50,9 +50,9 @@ const BankDetails = (props) => {
                             !igst_per >= 1 ? (
                                 <>
                                     <input type="text" value={value.cgst} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 font-semibold  w-1/2" onChange={(e) => handleChange(e)} />
-                                    <input type="number" value={cgst_per} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 font-semibold  w-1/4 text-center" onChange={(e) => handleCgst(e)} /><span>%</span>
-                                    <input type="text" value={value.sgst} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 font-semibold  w-1/2" onChange={(e) => handleChange(e)} />
-                                    <input type="number" value={sgst_per} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 font-semibold w-1/4 text-center" onChange={(e) => handleSgst(e)} /><span>%</span>
+                                    <input type="number" value={cgst_per} min="0" max="100" className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 font-semibold  w-1/4 text-center" onChange={(e) => handleCgst(e)} /><span>%</span>
+                                    <input type="text" value={value.sgst}  className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 font-semibold  w-1/2" onChange={(e) => handleChange(e)} />
+                                    <input type="number" value={sgst_per} min="0" className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 font-semibold w-1/4 text-center" onChange={(e) => handleSgst(e)} /><span>%</span>
                                 </>
                             ) : null
                         }
@@ -60,7 +60,7 @@ const BankDetails = (props) => {
                             !cgst_per >= 1 && !sgst_per >= 1 ? (
                                 <>
                                     <input type="text" value={value.igst} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 font-semibold w-1/2" onChange={(e) => handleChange(e)} />
-                                    <input type="number" value={igst_per} className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 font-semibold w-1/4 text-center" onChange={(e) => handleIgst(e)} /><span>%</span>
+                                    <input type="number" value={igst_per} min="0" className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 font-semibold w-1/4 text-center" onChange={(e) => handleIgst(e)} /><span>%</span>
                                 </>
                             ) : null
                         }
@@ -83,7 +83,7 @@ const BankDetails = (props) => {
                                 </>
                             ) : null
                         }
-                        <p>{parseFloat(cgst_tot)+parseFloat(props.total)+parseFloat(sgst_tot)+parseFloat(igst_tot)}</p>
+                        <p>{parseFloat(parseFloat(cgst_tot)+parseFloat(props.total)+parseFloat(sgst_tot)+parseFloat(igst_tot)).toFixed(2)}</p>
                     </div>
                 </div>
                 <input type="text" className="focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 text-md font-semibold mb-2" value="Bank Details" onChange={(e) => handleChange(e)} />
