@@ -11396,24 +11396,24 @@ module.exports = withSideEffect;
 /***/ }),
 
 /***/ "react-dom/server":
-/*!********************************************************************************!*\
-  !*** external "E:\\invoice_generator_new\\node_modules\\react-dom\\server.js" ***!
-  \********************************************************************************/
+/*!****************************************************************************!*\
+  !*** external "E:\\invoice-generator\\node_modules\\react-dom\\server.js" ***!
+  \****************************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("E:\\invoice_generator_new\\node_modules\\react-dom\\server.js");;
+module.exports = require("E:\\invoice-generator\\node_modules\\react-dom\\server.js");;
 
 /***/ }),
 
 /***/ "react":
-/*!***************************************************************************!*\
-  !*** external "E:\\invoice_generator_new\\node_modules\\react\\index.js" ***!
-  \***************************************************************************/
+/*!***********************************************************************!*\
+  !*** external "E:\\invoice-generator\\node_modules\\react\\index.js" ***!
+  \***********************************************************************/
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("E:\\invoice_generator_new\\node_modules\\react\\index.js");;
+module.exports = require("E:\\invoice-generator\\node_modules\\react\\index.js");;
 
 /***/ }),
 
