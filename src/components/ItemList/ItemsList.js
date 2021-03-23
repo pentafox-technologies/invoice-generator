@@ -18,7 +18,7 @@ const ItemsList = (props) => {
     amount: "AMOUNT",
   });
 
-  useEffect(() => {
+  const totalCalc = () => {
     let tot = 0;
     rows.forEach(r => {
       console.log(r)
@@ -26,7 +26,7 @@ const ItemsList = (props) => {
     })
     console.log(tot)
     setTotal(tot)
-  }, [rows])
+  }
 
   const handleHeaderChange = (key, val) => {
     setValue(prevState => ({
@@ -38,6 +38,7 @@ const ItemsList = (props) => {
     setRows(prevState => {
       let newState = prevState;
       newState[i][key] = val;
+      totalCalc();
       return newState;
     })
     // setValue(e.target.value)
@@ -53,7 +54,7 @@ const ItemsList = (props) => {
       item_amount: 0
     }))
   }
-  
+
   return (
     <>
       <div className="mb-4">
@@ -64,7 +65,7 @@ const ItemsList = (props) => {
             <input type="text" value={value.amount} className="col-span-3 text-right focus:outline-none font-semibold text-sm hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleHeaderChange('amount', e?.target?.value)} />
           </div>
           {
-            
+
             rows.map((item, i) => {
               return (
                 <div key={`row-${i}`} className="grid grid-cols-12 mb-2">
@@ -79,7 +80,7 @@ const ItemsList = (props) => {
         </div>
         <span className="cursor-pointer font-semibold text-sm text-blue-800" onClick={addNewRow}>+ Add Item to the list</span>
       </div>
-      <BankDetails total={total} currency={props.currency} />
+      <BankDetails total={parseFloat(total)} currency={props.currency} />
     </>
   )
 }
