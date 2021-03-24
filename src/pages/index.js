@@ -5,7 +5,7 @@ import TopBar from '../components/TopBar/TopBar';
 import Logo from '../images/logo.jpg';
 import CompanyDetails from '../components/CompanyDetails/CompanyDetails';
 import ItemsList from '../components/ItemList/ItemsList';
-// import Pdf from "react-to-pdf";
+import Pdf from "react-to-pdf";
 
 const ref = React.createRef();
 const HomePage = () => {
@@ -49,9 +49,9 @@ const HomePage = () => {
         </div>
         <div className="lg:flex lg:justify-center lg:w-8/12   lg:mx-auto">
           <div className="lg:block hidden " >
-            {/* <Pdf targetRef={ref} filename="invoice.pdf" size="A4">
+            <Pdf targetRef={ref} filename="invoice.pdf" size="A4">
               {({ toPdf }) => <div className="mt-20 w-8 mr-12"><FontAwesomeIcon onClick={toPdf} className=" fixed cursor-pointer" icon={faFileAlt} size="3x" color="gray" /></div>}
-            </Pdf> */}
+            </Pdf>
           </div>
           <div className=" bg-white lg:mt-20 lg:p-12 p-4 min-h-screen" ref={ref}>
             <div className="text-center mb-4 lg:mt-0 mt-8" >
