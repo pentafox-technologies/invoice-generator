@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 
-const ref = React.createRef();
 
 const CompanyDetails = () => {
   const [value, setValue] = useState({
@@ -24,7 +23,7 @@ const CompanyDetails = () => {
 
   return (
     <>
-      <div className="text-gray-500 mb-4" ref={ref}>
+      <div className="text-gray-500 mb-4" >
         <div className="grid grid-cols-12 mb-2 lg:text-sm text-xs">
           <input type="text" value={value.bill} className="col-span-5 mr-2 text-left font-semibold focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
           <input type="text" value={value.t_inv_no} className="col-span-3 mr-2 font-semibold text-right focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />

@@ -53,11 +53,11 @@ const HomePage = () => {
               {({ toPdf }) => <div className="mt-20 w-8 mr-12"><FontAwesomeIcon onClick={toPdf} className=" fixed cursor-pointer" icon={faFileAlt} size="3x" color="gray" /></div>}
             </Pdf>
           </div>
-          <div className=" bg-white lg:mt-20 lg:p-12 p-4 min-h-screen" >
-            <div className="text-center mb-4 lg:mt-0 mt-8" ref={ref}>
+          <div className=" bg-white lg:mt-20 lg:p-12 p-4 min-h-screen" ref={ref}>
+            <div className="text-center mb-4 lg:mt-0 mt-8" >
               <input className="focus:outline-none mx-auto text-xl font-semibold text-center text-gray-700  hover:bg-yellow-100 focus:bg-yellow-100" value={value.title} type="text" placeholder={value.title} onChange={(e) => handleChange(e)} />
             </div>
-            <div className="flex mb-8" ref={ref}>
+            <div className="flex mb-8">
               <div className="">
                 <input className="font-semibold w-full focus:outline-none text-gray-600 lg:text-xl text-sm hover:bg-yellow-100 focus:bg-yellow-100" value={value.name} type="text" onChange={(e) => handleChange(e)} />
                 <input className="font-medium w-full text-xs focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" type="address" value={value.address} placeholder="address line 1" onChange={(e) => handleChange(e)} />

@@ -4,12 +4,12 @@ import BankDetails from '../BankDetails/BankDetails';
 const ref = React.createRef();
 
 const ItemsList = (props) => {
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(100);
   const [rows, setRows] = useState([
     {
       item_desc: "Monthly charges towards development of digital suite of products",
       item_hsn_code: "998314",
-      item_amount: 888888
+      item_amount: total
     }
   ]);
   const [value, setValue] = useState({
@@ -58,7 +58,7 @@ const ItemsList = (props) => {
   return (
     <>
       <div className="mb-4">
-        <div className="text-gray-500 mb-6" ref={ref}>
+        <div className="text-gray-500 mb-6" >
           <div className="grid grid-cols-12 mb-2">
             <input type="text" value={value.description} className="col-span-6 mr-2 focus:outline-none font-semibold text-sm  hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleHeaderChange('description', e?.target?.value)} />
             <input type="text" value={value.hsn_code} className="col-span-3 mr-2 text-right focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100 font-semibold text-sm" onChange={(e) => handleHeaderChange('hsn_code', e?.target?.value)} />
@@ -71,7 +71,7 @@ const ItemsList = (props) => {
                 <div key={`row-${i}`} className="grid grid-cols-12 mb-2">
                   <textarea type="text" defaultValue={item.item_desc} className="mr-2 col-span-6 text-sm  focus:outline-none  hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(i, 'item_desc', e?.target?.value)} />
                   <input type="text" defaultValue={item.item_hsn_code} className="focus:outline-none mr-2 h-5 hover:bg-yellow-100  focus:bg-yellow-100 col-span-3 text-sm text-right" onChange={(e) => handleChange(i, 'item_hsn_code', e?.target?.value)} />
-                  <input type="amount" defaultValue={item.item_amount} className="focus:outline-none h-5  hover:bg-yellow-100 focus:bg-yellow-100 col-span-3 text-sm text-right" onChange={(e) => handleChange(i, 'item_amount', e?.target?.value)} />
+                  <input type="" min="1" defaultValue={item.item_amount} className="focus:outline-none h-5  hover:bg-yellow-100 focus:bg-yellow-100 col-span-3 text-sm text-right" onChange={(e) => handleChange(i, 'item_amount', e?.target?.value)} />
                 </div>
               )
             })

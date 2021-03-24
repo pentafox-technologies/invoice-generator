@@ -40,7 +40,7 @@ const BankDetails = (props) => {
     const igst_tot = parseFloat(props.total * (igst_per / 100)).toFixed(2);
     const grant_tot = parseFloat(props.total + sgst_tot + cgst_tot + igst_tot).toFixed(2);
     return (
-        <div className="text-gray-500 text-xs lg:text-sm" ref={ref}>
+        <div className="text-gray-500 text-xs lg:text-sm">
             <div className="">
                 <div className="grid grid-cols-12 mb-8 col-end-8">
                     <div className="col-span-6"></div>
