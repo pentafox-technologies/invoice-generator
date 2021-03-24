@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 
-const ref = React.createRef();
 
 const BankDetails = (props) => {
     const [value, setValue] = useState({

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import BankDetails from '../BankDetails/BankDetails';
 
-const ref = React.createRef();
 
 const ItemsList = (props) => {
   const [total, setTotal] = useState(100);
