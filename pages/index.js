@@ -8,17 +8,17 @@ import ItemsList from "../components/ItemList/ItemsList";
 import axios from "axios";
 import InvoiceDetails from "../components/InvoiceDetails/InvoiceDetails";
 import dynamic from 'next/dynamic'
+import Sticky from 'react-stickynode';
+import { HomePageWrapper } from '../styles/HomePageWrapper.css';
 var Pdf = null
 if (typeof (window) !== 'undefined') {
-  import( "react-to-pdf").then(module => {
+  import("react-to-pdf").then(module => {
     Pdf = module.default;
   });
 }
 const ref = React.createRef();
 
 const HomePage = () => {
-  
-
   const [title, setTitle] = useState("");
   const [currency, setCurrency] = useState("₹");
   const [toCurrency, setToCurrency] = useState("₹");
@@ -40,10 +40,10 @@ const HomePage = () => {
     bank: "",
     acc_no: "",
     ifsc: ""
-  }); 
+  });
 
-  const handleClick = (e,type) => {
-    if (type === "from"){
+  const handleClick = (e, type) => {
+    if (type === "from") {
       setCurrency(e.target.value);
     } else {
       setToCurrency(e.target.value);
@@ -72,7 +72,7 @@ const HomePage = () => {
       }
     }
   };
-  
+
   const handleChange = (e) => {
     setBank(st => ({
       ...st,
@@ -112,39 +112,39 @@ const HomePage = () => {
   const store_invoice_db = () => {
     axios
       .post("http://localhost:9000/invoice", {
-        "title":title,
-        "business":business,
-        "client":client,
-        "invoice":invoice,
-        "items":items,
-        "bank":bank
+        "title": title,
+        "business": business,
+        "client": client,
+        "invoice": invoice,
+        "items": items,
+        "bank": bank
       })
       .then(function (response) {
-          console.log(response)
-          get_client()
+        console.log(response)
+        get_client()
       })
       .catch(function (error) {
-          console.log(error)
+        console.log(error)
       })
   }
 
   const get_pay = () => {
     axios
-    .get("http://localhost:9000/pay")
-        .then(function (response) {
-            console.log(response.data.data)
-            setPayList(response.data.data)
-        })
-        .catch(function (error) {
-            console.log(error)
-        })
+      .get("http://localhost:9000/pay")
+      .then(function (response) {
+        console.log(response.data.data)
+        setPayList(response.data.data)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 
   useEffect(() => {
     get_client();
     get_businesses();
     get_pay();
-  },[]);
+  }, []);
 
   const collect_items = (_items) => {
     console.log(_items)
@@ -158,12 +158,192 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="flex rounded bg-gray-200 min-h-screen min-w-screen">
-        <div className="lg:flex lg:w-2/12 lg:mx-auto">
+      <HomePageWrapper>
+        <div className="grid grid-cols-12">
+          <div className="col-span-2">
+            <TopBar />
+          </div>
+          <div className="col-span-1"></div>
+          <div className="col-span-9">
+            <div className=" grid grid-cols-12 mt-40 ">
+              <div ref={ref} className="col-span-8  min-w-full mb-20 min-h-screen invoice-page">
+                <div className="flex justify-between  " >
+                  <div class=" add-client text-center">
+                    <div class="add-client-text">
+                      To create an invoice, first select or create a client.
+                      </div>
+                    <a
+                      href="https://fms.lano.io/en/">
+                      <span class="text-brand font-bold"><span className=" text-md p-1">+</span>Add client</span>
+                    </a>
+                  </div>
+                  <div className="w-48 business-type">
+                    <a
+                      href="https://fms.lano.io/en/">
+                      <p class="text-brand font-bold mb-2"><span className=" text-md p-1">+</span>Add Logo</p>
+                    </a>
+                    <span className=" business-name">Vignesh Sankaran</span>
+                    <br />
+                    {/* <input value="Vignesh Sankaran" type="hidden" name="invoice[full_name]" id="invoice_full_name"></input> */}
+                    <address className="mb-2">
+                      <span>5th Floor, 91Springboard,  Trifecta Building, ITPL Main road, Mahdevapura</span>
+                      <br />
+                      <span>560048 Bengaluru, IN</span>
+                    </address>
+                    <address className="mb-2">
+                      <span>+91 90432 69523</span>
+                      <br />
+                      <span>vignesh@pentafox.in</span>
+                    </address>
+                    <span className="mb-2">
+                      Tax ID: 33ANUPV7383CIZE
+                      </span>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <h1 className="invoice">Invoice</h1>
+                    <div className="flex justify-between mb-8">
+                      <div className="left-column">
+                        <span>Invoice ID:2021-04-26-0001</span>
+                      </div>
+                      <div className="right-column">
+                        <span>Invoice Date:26/04/2021</span>
+                      </div>
+                    </div>
+                  </div>
+                  <ItemsList currency={currency} toCurrency={toCurrency} actionCB={collect_items} />
+                  <div>
+                    <a
+                      href="https://fms.lano.io/en/">
+                      <p class="text-brand font-bold mb-8"><span className=" text-md p-1">+</span>Add Payment deadline</p>
+                    </a>
+                    <a
+                      href="https://fms.lano.io/en/">
+                      <p class="text-brand font-bold mb-2"><span className=" text-md p-1">+</span>Add concluding text (optional)</p>
+                    </a>
+                  </div>
+                  <hr className="mt-40 border-gray-800" />
+                  <div className="flex mt-8">
+                    <div class="footer-left mr-4">
+                      <span>Vignesh Sankaran</span>
+                      <br />
+                      <span>5th Floor, 91Springboard,  Trifecta Building, ITPL Main road, Mahdevapura</span>
+                      <br />
+                      <span>560048 Bengaluru, IN</span>
+                    </div>
+                    <div>
+                      <span>Receiver Vignesh Sankaran</span>
+                      <br />
+                      <span>Indian Bank</span><br />
+                      <span>Country of Bank: India</span><br />
+                      <span>Account number:6126431103</span><br />
+                      <span>IFSC: IDIB000J008</span>
+                    </div>
+                  </div>
+                  <div>
+
+                  </div>
+                </div>
+              </div>
+              <div className="col-span-4 ml-24 mr-12">
+                <Sticky enabled={true} top={0}>
+                  <div className="bg-white shadow-lg   h-3/5 p-4 mb-20">
+                    <p className="text-center font-normal text-2xl">Properties</p>
+                    <div className="w-full my-4">
+                      <p className="py-2">From Currency</p>
+                      <select
+                        className="py-1 px-4 text-2xl focus:outline-none w-full bg-gray-200 rounded-md"
+                        onBlur={(e) => handleClick(e, 'from')}
+                      >
+                        <option>₹</option>
+                        <option>$</option>
+                        <option>£</option>
+                        <option>€</option>
+                        <option>¥</option>
+                      </select>
+                    </div>
+                    <div>
+                      <p className="py-2">To Currency</p>
+                      <select
+                        className="px-4 py-1 text-2xl focus:outline-none w-full p-2 bg-gray-200 rounded-md"
+                        onBlur={(e) => handleClick(e, 'to')}
+                      >
+                        <option>₹</option>
+                        <option>$</option>
+                        <option>£</option>
+                        <option>€</option>
+                        <option>¥</option>
+                      </select>
+                    </div>
+                    <div>
+                      <p className="py-2">Clients</p>
+                      <select
+                        className="px-2 py-1 text-2xl focus:outline-none w-full bg-gray-200 rounded-md"
+                        onBlur={(e) => handleClient(e)}
+                      >
+                        {
+                          allClients.map((client, index) => (
+                            <option key={index.toString()}>{client.name}</option>
+                          ))
+                        }
+                      </select>
+                    </div>
+                    <div>
+                      <p className="py-2">My Businesses</p>
+                      <select
+                        className="p-2 py-1 w-full text-2xl  focus:outline-none bg-gray-200 rounded-md"
+                        onBlur={(e) => handleBusniess(e)}
+                      >
+                        {allBusinesses.map((business, index) => (
+                          <option key={index}>{business.name}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <p className="p-2">Payment</p>
+                      <select
+                        className="px-2 py-1 w-full text-2xl focus:outline-none bg-gray-200 rounded-md"
+                        onBlur={(e) => handlePay(e)}
+                      >
+                        {payList?.map((pay, index) => (
+                          <option key={index}>{pay.name}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div className="my-2 hidden">
+                      <div className="w-full text-center">
+                        <button className="p-2 px-4 hover:bg-gray-400 "
+                          onClick={store_invoice_db}>Save</button>
+                      </div>
+                    </div>
+                    {
+                      (Pdf) && (
+                        <Pdf targetRef={ref} filename="invoice.pdf" size="A4">
+                          {
+                            ({ toPdf }) => <div className="w-full text-center">
+                              <button onClick={toPdf}
+                                className="p-2 mt-8 w-full rounded-md px-4 bg-gray-200 hover:bg-gray-300 "
+                                size="3x" color="gray">Download
+                                </button>
+                            </div>
+                          }
+                        </Pdf>
+                      )
+                    }
+                  </div>
+                </Sticky>
+              </div>
+            </div>
+          </div>
+        </div>
+      </HomePageWrapper>
+      {/* <div className="grid grid-cols-12 bg-gray-200">
+        <div className="col-span-2">
           <TopBar />
         </div>
-        
-        <div ref={ref} className="lg:flex  lg:justify-center lg:w-8/12  lg:mx-auto">
+
+        <div ref={ref} className="col-span-7 max-w-3/4 mx-auto mt-32 mb-20">
           <div className="lg:block hidden ">
           </div>
           <div className=" bg-white lg:mt-20 lg:p-12 p-4 min-h-screen" >
@@ -182,12 +362,24 @@ const HomePage = () => {
                 name={"Random COMPANY Ltd"}
                 initValues={client}
               />
+              <div className="border-dotted p-4 w-full max-h-40 bg-white border-gray-300 border-2 ">
+                <div className="text-center">
+                  <p className="mb-4"> To Create an invoice, first select a client</p>
+                  <a> Add Client</a>
+                </div>
+              </div>
               <CompanyDetails
                 align={"right"}
                 name={"Pentafox Tech Pvt Ltd"}
                 initValues={business}
               />
-              {/* image logo */}
+              <div className="border-dotted p-4 w-full max-h-40 bg-white m-2 border-gray-300 border-2">
+                <div className="text-center">
+                  <p className="mb-4">To create an invoice select a business</p>
+                  <a>Add business</a> 
+                </div>
+              </div>
+              image logo
               <div className="ml-6">
                 <div className="lg:w-24 mt-8 w-20 m-auto cursor-pointer">
                   {error && (
@@ -199,7 +391,7 @@ const HomePage = () => {
                         <label htmlFor="fileUpload" className="">
                           {imgPreview.file ? (
                             <img
-                              // src={imgPreview.file}
+                              src={imgPreview.file}
                               alt="could not be stored"
                             />
                           ) : (
@@ -225,116 +417,131 @@ const HomePage = () => {
             <InvoiceDetails actionCB={collect_invoice} />
             <ItemsList currency={currency} toCurrency={toCurrency} actionCB={collect_items} />
             <div className="flex mb-8 space-between">
-                <CompanyDetails
-                  align={"left"}
-                  name={"Pentafox Tech Pvt Ltd"}
-                  initValues={business}
-                />
-                <div className="flex text-sm mb-10 float-right">
-                    <div className="col-span-6 ">
-                        <input name="l_acc_name" type="text" placeholder={"Account Name"}  value={bank.l_acc_name} className="w-full focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
-                        <input name="l_bank_name" type="text" placeholder={"Bank Name"} value={bank.l_bank_name} className="w-full  focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
-                        <input name="l_acc_no" type="text" placeholder={"Account Number"}  value={bank.l_acc_no} className="w-full focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
-                        <input name="l_ifsc" type="text" placeholder={"IFSC Code"}  value={bank.l_ifsc} className="w-full  focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
-                    </div>
-                    <div className="col-span-6 float-right">
-                        <input name="name" type="text" placeholder={"Name XXXX"} value={bank.name} className=" w-full  focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
-                        <input name="bank" type="text" placeholder={"Bank YYYY"} value={bank.bank} className=" w-full focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
-                        <input name="acc_no" type="text" placeholder={"5555 6666 7777 8888"} value={bank.acc_no} className="w-full  focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
-                        <input name="ifsc" type="text" placeholder={"IFSC XXX"} value={bank.ifsc} className=" w-full  focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
-                    </div>
+              <CompanyDetails
+                align={"left"}
+                name={"Pentafox Tech Pvt Ltd"}
+                initValues={business}
+              />
+              <div className="flex text-sm mb-10 float-right">
+                <div className="col-span-6 ">
+                  <input name="l_acc_name" type="text" placeholder={"Account Name"} value={bank.l_acc_name} className="w-full focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
+                  <input name="l_bank_name" type="text" placeholder={"Bank Name"} value={bank.l_bank_name} className="w-full  focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
+                  <input name="l_acc_no" type="text" placeholder={"Account Number"} value={bank.l_acc_no} className="w-full focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
+                  <input name="l_ifsc" type="text" placeholder={"IFSC Code"} value={bank.l_ifsc} className="w-full  focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
                 </div>
-              </div> 
-          </div> 
-        </div>
-        <div className="bg-red-500 rounded  min-h-80 p-2 ml-2 w-2/12 mt-20">
-          <p className="font-semibold">Properties</p>
-          <div className="w-8 mt-4 flex">
-            <p className="p-2">
-              Currency
-            </p>
-            <select
-              className="p-1 text-2xl focus:outline-none w-12"
-              onBlur={(e) => handleClick(e,'from')}
-            >
-              <option>₹</option>
-              <option>$</option>
-              <option>£</option>
-              <option>€</option>
-              <option>¥</option>
-            </select>
-          </div>
-          <div className="w-8 mt-4 flex">
-            <p className="p-2">
-              Destination Currency
-            </p>
-            <select
-              className="p-1 text-2xl focus:outline-none w-12"
-              onBlur={(e) => handleClick(e,'to')}
-            >
-              <option>₹</option>
-              <option>$</option>
-              <option>£</option>
-              <option>€</option>
-              <option>¥</option>
-            </select>
-          </div>
-          <div className="w-8 mt-4 flex">
-            <p className="p-2">
-              Clients
-            </p>
-            <select
-              className="p-1 text-2xl focus:outline-none w-120"
-              onBlur={(e) => handleClient(e)}
-            >
-              {allClients.map((client, index) => (
-                <option key={index.toString()}>{client.name}</option>
-              ))}
-            </select>
-          </div>
-          <div className="w-8 mt-4 flex">
-            <p className="p-2">
-              My Businesses
-            </p>
-            <select
-              className="p-1 text-2xl focus:outline-none w-120"
-              onBlur={(e) => handleBusniess(e)}
-            >
-              {allBusinesses.map((business, index) => (
-                <option key={index}>{business.name}</option>
-              ))}
-            </select>
-          </div>
-          <div className="w-8 mt-4 flex">
-            <p className="p-2">
-              Payment
-            </p>
-            <select
-              className="p-1 text-2xl focus:outline-none w-120"
-              onBlur={(e) => handlePay(e)}
-            >
-              {payList?.map((pay, index) => (
-                <option key={index}>{pay.name}</option>
-              ))}
-            </select>
-          </div>
-          <div className="w-8 mt-4">
-            <div className="p-1 text-2xl focus:outline-none w-120">
-              <button className ="px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-               onClick={store_invoice_db}>Save</button>
+                <div className="col-span-6 float-right">
+                  <input name="name" type="text" placeholder={"Name XXXX"} value={bank.name} className=" w-full  focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
+                  <input name="bank" type="text" placeholder={"Bank YYYY"} value={bank.bank} className=" w-full focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
+                  <input name="acc_no" type="text" placeholder={"5555 6666 7777 8888"} value={bank.acc_no} className="w-full  focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
+                  <input name="ifsc" type="text" placeholder={"IFSC XXX"} value={bank.ifsc} className=" w-full  focus:outline-none hover:bg-yellow-100 focus:bg-yellow-100" onChange={(e) => handleChange(e)} />
+                </div>
+              </div>
             </div>
           </div>
-          {
-            (Pdf) && (
-            <Pdf targetRef={ref} filename="invoice.pdf" size="A4">
-              {({ toPdf }) => <div className="mt-2 w-8 mr-12"><button onClick={toPdf} 
-                className ="px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-transparent rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                size="3x" color="gray">Download</button></div>}
-            </Pdf>
-            )
-          }
         </div>
-      </div>
+        <div className="col-span-3">
+        <Sticky enabled={true} top={0}>
+        <div className="bg-white shadow-lg   ml-16  h-3/5 p-4 mb-20 mt-52">
+
+            <p className="text-center font-normal text-2xl">Properties</p>
+            <div className="w-full my-4">
+              <p className="py-2">
+                From Currency
+            </p>
+              <select
+                className="py-1 px-4 text-2xl focus:outline-none w-full bg-gray-200 rounded-md"
+                onBlur={(e) => handleClick(e, 'from')}
+              >
+                <option>₹</option>
+                <option>$</option>
+                <option>£</option>
+                <option>€</option>
+                <option>¥</option>
+              </select>
+            </div>
+            <div>
+              <p className="py-2">
+                To Currency
+            </p>
+              <select
+                className="px-4 py-1 text-2xl focus:outline-none w-full p-2 bg-gray-200 rounded-md"
+                onBlur={(e) => handleClick(e, 'to')}
+              >
+                <option>₹</option>
+                <option>$</option>
+                <option>£</option>
+                <option>€</option>
+                <option>¥</option>
+              </select>
+            </div>
+            <div>
+              <p className="py-2">
+                Clients
+            </p>
+              <select
+                className="px-2 py-1 text-2xl focus:outline-none w-full bg-gray-200 rounded-md"
+                onBlur={(e) => handleClient(e)}
+              >
+                {
+                  allClients.map((client, index) => (
+                    <option key={index.toString()}>{client.name}</option>
+                  ))
+                }
+              </select>
+            </div>
+            <div>
+              <p className="py-2">
+                My Businesses
+            </p>
+              <select
+                className="p-2 py-1 w-full text-2xl  focus:outline-none bg-gray-200 rounded-md"
+                onBlur={(e) => handleBusniess(e)}
+              >
+                {allBusinesses.map((business, index) => (
+                  <option key={index}>{business.name}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <p className="p-2">
+                Payment
+            </p>
+              <select
+                className="px-2 py-1 w-full text-2xl focus:outline-none bg-gray-200 rounded-md"
+                onBlur={(e) => handlePay(e)}
+              >
+                {payList?.map((pay, index) => (
+                  <option key={index}>{pay.name}</option>
+                ))}
+              </select>
+            </div>
+            <div className="my-2 hidden">
+              <div className="w-full text-center">
+                <button className="p-2 px-4 hover:bg-gray-400 "
+                  onClick={store_invoice_db}>Save</button>
+              </div>
+            </div>
+            {
+              (Pdf) && (
+                <Pdf targetRef={ref} filename="invoice.pdf" size="A4">
+                  {
+                    ({ toPdf }) => <div className="w-full text-center">
+                      <button onClick={toPdf}
+                        className="p-2 mt-8 w-full rounded-md px-4 bg-gray-200 hover:bg-gray-300 "
+                        size="3x" color="gray">Download
+                  </button>
+                    </div>
+                  }
+                </Pdf>
+              )
+            }
+        </div>
+
+          </Sticky>
+
+        </div>
+          
+      </div> */}
     </>
   );
 };
