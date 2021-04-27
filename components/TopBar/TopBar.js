@@ -1,4 +1,7 @@
 import React, { Fragment } from 'react';
+import Link from 'next/link';
+
+
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faAngleDown} from '@fortawesome/free-solid-svg-icons';
 // import Logo from '../../public/logo.jpg'
@@ -56,6 +59,10 @@ const TopBar = () => {
                         <a href="/" class="block font-medium text-sm text-gray-300 py-4 px-12 hover:bg-gray-800 ">
                             Logout
                     </a>
+                    <Link href="/editable"><a>Edit</a> </Link>
+                    {/* <a href="/pages/editable" class="block font-medium text-sm text-gray-300 py-4 px-12 hover:bg-gray-800 ">
+                          Edit  
+                    </a> */}
                         {/* <a href="/MyInvoice" class="px-4 py-2 mt-2 text-sm font-semibold  bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-100 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-200 focus:text-gray-200 hover:bg-gray-900 focus:bg-gray-900 focus:outline-none focus:shadow-outline">
                         Invoices
                     </a> */}
