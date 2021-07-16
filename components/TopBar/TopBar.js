@@ -59,7 +59,7 @@ const TopBar = () => {
                         <a href="/" class="block font-medium text-sm text-gray-300 py-4 px-12 hover:bg-gray-800 ">
                             Logout
                     </a>
-                    <Link href="/editable"><a>Edit</a> </Link>
+                    {/* <Link href="/editable"><a>Edit</a> </Link> */}
                     {/* <a href="/pages/editable" class="block font-medium text-sm text-gray-300 py-4 px-12 hover:bg-gray-800 ">
                           Edit  
                     </a> */}
